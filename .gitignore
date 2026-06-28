@@ -1,0 +1,49 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+*.env
+
+# VSCode/IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Migrations
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# Test results
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+.tox/
+.nox/
+.pytest_cache/
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# services
+pg_service.conf
+
+# staticfiles
+static/

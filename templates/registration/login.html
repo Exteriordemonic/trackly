@@ -1,0 +1,9 @@
+{% extends 'base.html' %} 
+{% block body %}
+{% include 'partials/brand.html' %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Zaloguj</button>
+</form>
+{% endblock %}
