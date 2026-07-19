@@ -1,0 +1,70 @@
+// ============================================================
+// Trackly — design tokens
+// Import: @use "variables" as *;
+// ============================================================
+
+// ---------- Accent ----------
+$accent:         #059669;
+$accent-hover:   #047857;
+$accent-soft:    #ecfdf5;
+$accent-softer:  #d1fae5;
+
+// ---------- Surfaces / background ----------
+$bg:        #f6f8f7;
+$surface:   #ffffff;
+$surface-2: #f8fafc;
+
+// ---------- Text ----------
+$text:       #0f172a;
+$text-muted: #64748b;
+$text-faint: #94a3b8;
+
+// ---------- Borders ----------
+$border:        #e7ebef;
+$border-strong: #d6dce2;
+
+// ---------- Status colors (ticket statuses) ----------
+$status-new-bg:      #eff6ff;
+$status-new-fg:      #1d4ed8;
+$status-progress-bg: #fff7ed;
+$status-progress-fg: #c2410c;
+$status-review-bg:   #f5f3ff;
+$status-review-fg:   #6d28d9;
+$status-done-bg:     #ecfdf5;
+$status-done-fg:     #047857;
+$status-rejected-bg: #fef2f2;
+$status-rejected-fg: #b91c1c;
+
+$status-colors: (
+  "new":      ($status-new-bg,      $status-new-fg),
+  "progress": ($status-progress-bg, $status-progress-fg),
+  "review":   ($status-review-bg,   $status-review-fg),
+  "done":     ($status-done-bg,     $status-done-fg),
+  "rejected": ($status-rejected-bg, $status-rejected-fg),
+);
+
+// ---------- Radius ----------
+$radius:    12px;
+$radius-sm: 8px;
+
+// ---------- Shadows ----------
+$shadow-sm: 0 1px 2px rgba(15, 23, 42, .05);
+$shadow:    0 4px 16px -4px rgba(15, 23, 42, .10), 0 1px 3px rgba(15, 23, 42, .04);
+$shadow-lg: 0 20px 48px -16px rgba(15, 23, 42, .20);
+
+// ---------- Typography ----------
+$font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+$font-body:    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+$font-size-base: 15px;
+$line-height-base: 1.55;
+
+// ---------- Layout ----------
+$sidebar-width: 248px;
+$topbar-height: 60px;
+$content-max-width: 1180px;
+
+// ---------- Breakpoints ----------
+$bp-tablet: 980px;
+$bp-sidebar-collapse: 860px;
+$bp-mobile: 560px;

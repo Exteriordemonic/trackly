@@ -1,0 +1,11 @@
+@use "./base/reset";
+@use "./base/global";
+
+@use "./abstracts/variables" as *;
+@use "./molecules/brand";
+
+body {
+    margin: 0;
+    color: $text;
+    background-color: $bg;
+}

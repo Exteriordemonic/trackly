@@ -1,0 +1,17 @@
+// ============================================================
+// Atom: Brand Name
+// Standalone text wordmark "Trackly".
+// BEM: .brand-name, modyfikatory rozmiaru
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.brand-name {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: $text;
+
+  &--sm { font-size: 15px; }
+  &--lg { font-size: 19px; }
+}
