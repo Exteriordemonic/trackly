@@ -14,11 +14,11 @@
             </div>
             <form class="form" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form.as_div }}
                 {% include 'atoms/button.html' with text="Zaloguj" arrow=True %}
             </form>
             <div class="divider">lub</div>
-            {% include 'atoms/button.html' with text="Użyj magic linka" arrow=True link="/test" %}
+            {% include 'atoms/button.html' with text="Użyj magic linka" arrow=True link="/test" variation="ghost" %}
             <p class="auth__foot">Nie masz konta? <a href="#">Zarejestruj się</a></p>
         </div>
     </div>

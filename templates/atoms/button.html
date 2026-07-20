@@ -18,11 +18,11 @@
 {% endpartialdef %}
 
 {% if link %}
-<a class="btn btn-primary btn-block btn-lg" href={{link}}>
+<a class="btn btn-{{ variation|default:"primary" }} btn-block btn-lg" href="{{ link }}">
     {% partial button %}
 </a>
 {% else %}
-<button class="btn btn-primary btn-block btn-lg">
+<button class="btn btn-{{ variation|default:"primary" }} btn-block btn-lg">
     {% partial button %}
 </button>
 {% endif %}
