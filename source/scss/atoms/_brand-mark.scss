@@ -7,34 +7,17 @@
 @use "../abstracts/variables" as *;
 
 .brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: $accent;
   display: grid;
   place-items: center;
   flex: none;
-  width: 30px;
-  height: 30px;
-  border-radius: $radius-sm;
-  background: $accent;
-  box-shadow: 0 2px 6px rgba($accent, .35);
+  box-shadow: 0 2px 6px rgba(5, 150, 105, .35);
 
-  &__icon {
-    width: 17px;
-    height: 17px;
-  }
-
-  // ---------- sizes ----------
-  &--sm {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-
-    .brand-mark__icon { width: 13px; height: 13px; }
-  }
-
-  &--lg {
-    width: 32px;
-    height: 32px;
-    border-radius: 9px;
-
-    .brand-mark__icon { width: 18px; height: 18px; }
+  svg {
+    width: 18px;
+    height: 18px;
   }
 }

@@ -1,0 +1,26 @@
+// ============================================================
+// Molecule: Link chip
+// Pill showing the reported URL, with a leading icon.
+// BEM: .link-chip
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  background: $surface-2;
+  font-size: 13.5px;
+  color: $accent;
+  font-weight: 500;
+  word-break: break-all;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    flex: none;
+  }
+}

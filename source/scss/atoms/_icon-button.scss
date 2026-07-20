@@ -1,0 +1,27 @@
+// ============================================================
+// Atom: Icon button
+// Square button holding a single icon (topbar notifications, sidebar menu toggle).
+// BEM: .icon-btn
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-sm;
+  border: 1px solid $border;
+  background: $surface;
+  display: grid;
+  place-items: center;
+  color: $text-muted;
+
+  &:hover {
+    background: $surface-2;
+    color: $text;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}

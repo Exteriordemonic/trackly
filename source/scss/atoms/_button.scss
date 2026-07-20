@@ -1,0 +1,68 @@
+@use "../abstracts/variables" as *;
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid transparent;
+    border-radius: $radius-sm;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background .12s, border-color .12s, color .12s, box-shadow .12s;
+    cursor: pointer;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.btn-primary {
+    background: $accent;
+    color: $text-on-accent;
+    box-shadow: $shadow-accent-sm;
+
+    &:hover {
+        background-color: $accent-hover;
+    }
+}
+
+.btn-ghost {
+    background: $surface;
+    color: $text;
+    border-color: $border-strong;
+
+    &:hover {
+        background: $surface-2;
+        border-color: $text-faint;
+    }
+}
+
+.btn-google {
+    background: $surface;
+    color: $text;
+    border: 1px solid $border-strong;
+    box-shadow: none;
+
+    &:hover {
+        background: $surface-2;
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-lg {
+    padding: $btn-padding-y $btn-padding-x;
+    font-size: 15px;
+}

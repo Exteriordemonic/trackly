@@ -1,0 +1,23 @@
+// ============================================================
+// Molecule: Checkbox field
+// Inline checkbox + label ("Zapamiętaj mnie").
+// BEM: .check
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: $text-muted;
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    width: 16px;
+    height: 16px;
+    accent-color: $accent;
+    cursor: pointer;
+  }
+}

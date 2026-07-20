@@ -1,0 +1,26 @@
+// ============================================================
+// Molecule: User chip
+// Signed-in user summary shown at the bottom of the sidebar (avatar + name/email).
+// BEM: .user-chip, .user-chip .u-name, .user-chip .u-mail
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: $radius-sm;
+  border: 1px solid $border;
+
+  .u-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .u-mail {
+    font-size: 11.5px;
+    color: $text-faint;
+  }
+}

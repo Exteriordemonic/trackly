@@ -2,11 +2,48 @@
 @use "./base/global";
 
 @use "./abstracts/variables" as *;
-@use "./atoms/heading";
-@use "./molecules/brand";
 
-body {
-    margin: 0;
-    color: $text;
-    background-color: $bg;
-}
+// ---------- Atoms ----------
+@use "./atoms/heading";
+@use "./atoms/text";
+@use "./atoms/button";
+@use "./atoms/badge";
+@use "./atoms/input";
+@use "./atoms/label";
+@use "./atoms/hint";
+@use "./atoms/avatar";
+@use "./atoms/chip";
+@use "./atoms/icon-button";
+@use "./atoms/eyebrow";
+@use "./atoms/alert";
+@use "./atoms/divider";
+
+// ---------- Molecules ----------
+@use "./molecules/brand";
+@use "./molecules/field";
+@use "./molecules/input-prefix";
+@use "./molecules/input-wrap";
+@use "./molecules/checkbox-field";
+@use "./molecules/dropzone";
+@use "./molecules/meta-row";
+@use "./molecules/copy-row";
+@use "./molecules/link-chip";
+@use "./molecules/nav-item";
+@use "./molecules/user-chip";
+@use "./molecules/kv";
+
+// ---------- Organisms ----------
+@use "./organisms/auth";
+@use "./organisms/public-layout";
+@use "./organisms/success";
+@use "./organisms/tracking";
+@use "./organisms/sidebar";
+@use "./organisms/topbar";
+@use "./organisms/dashboard-shell";
+@use "./organisms/project-card";
+@use "./organisms/toolbar";
+@use "./organisms/link-bar";
+@use "./organisms/ticket-table";
+@use "./organisms/ticket-detail";
+
+

@@ -1,0 +1,153 @@
+// ============================================================
+// Organism: Ticket detail
+// Two-column ticket detail page: main panel (description, screenshot)
+// and side panel (reporter, status picker, admin note).
+// BEM: .detail-grid, .panel, .panel-pad, .panel-title, .detail-title,
+//      .detail-top, .shot, .reporter, .save-row, .status-grid, .status-opt
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 22px;
+  align-items: start;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $radius;
+  box-shadow: $shadow-sm;
+
+  & + .panel {
+    margin-top: 18px;
+  }
+}
+
+.panel-pad {
+  padding: 22px;
+}
+
+.panel-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-faint;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 14px;
+}
+
+.detail-title {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.detail-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+
+  .d-id {
+    font-size: 13px;
+    color: $text-faint;
+    font-family: $font-display;
+  }
+}
+
+.shot {
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  background: $surface-2;
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  color: $text-faint;
+  position: relative;
+
+  svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .shot-cap {
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    font-size: 12px;
+    color: $text-faint;
+    background: rgba(255, 255, 255, .85);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+}
+
+.reporter {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  .r-mail {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .r-when {
+    font-size: 12.5px;
+    color: $text-faint;
+  }
+}
+
+.save-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+hr.div {
+  border: none;
+  border-top: 1px solid $border;
+  margin: 18px 0;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.status-opt {
+  border: 1px solid $border;
+  background: $surface;
+  border-radius: $radius-sm;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: $text-muted;
+  transition: all .12s;
+
+  &:hover {
+    border-color: $border-strong;
+  }
+
+  &.sel {
+    border-color: $accent;
+    background: $accent-soft;
+    color: $accent-hover;
+    box-shadow: 0 0 0 1px $accent;
+  }
+}

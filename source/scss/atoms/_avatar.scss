@@ -1,0 +1,20 @@
+// ============================================================
+// Atom: Avatar
+// Circular initials badge for a user (sidebar user-chip, ticket reporter).
+// BEM: .avatar
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: $text;
+  color: $text-on-accent;
+  display: grid;
+  place-items: center;
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: 13px;
+  flex: none;
+}

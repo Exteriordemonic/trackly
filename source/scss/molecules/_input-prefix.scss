@@ -1,0 +1,27 @@
+// ============================================================
+// Molecule: Input prefix
+// Text input with a fixed leading symbol (e.g. "🔗" before a URL field).
+// Markup:
+//   <div class="input-prefix">
+//     <span class="px">🔗</span>
+//     <input class="input" ... />
+//   </div>
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.input-prefix {
+  position: relative;
+
+  .px {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-faint;
+    font-size: 14px;
+  }
+
+  .input {
+    padding-left: 30px;
+  }
+}

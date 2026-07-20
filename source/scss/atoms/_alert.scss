@@ -1,0 +1,27 @@
+// ============================================================
+// Atom: Alert
+// Inline error/notice banner (e.g. login form-level error).
+// BEM: .alert
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  background: $status-rejected-bg;
+  border: 1px solid #fecaca;
+  color: $status-rejected-fg;
+  padding: 11px 13px;
+  border-radius: $radius-sm;
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  line-height: 1.45;
+
+  svg {
+    width: 17px;
+    height: 17px;
+    flex: none;
+    margin-top: 1px;
+  }
+}

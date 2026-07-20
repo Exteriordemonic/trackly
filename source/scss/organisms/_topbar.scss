@@ -1,0 +1,67 @@
+// ============================================================
+// Organism: Topbar
+// Sticky dashboard header with breadcrumbs and right-side actions.
+// BEM: .topbar, .topbar .menu-btn, .topbar .crumbs, .topbar .tb-right
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.topbar {
+  height: $topbar-height;
+  background: $surface;
+  border-bottom: 1px solid $border;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  .menu-btn {
+    display: none;
+    border: none;
+    background: transparent;
+    color: $text;
+    padding: 6px;
+    border-radius: 7px;
+
+    &:hover {
+      background: $surface-2;
+    }
+  }
+
+  .crumbs {
+    font-size: 14px;
+    color: $text-muted;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+
+    .sep {
+      color: $text-faint;
+    }
+
+    .cur {
+      color: $text;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .tb-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media (max-width: $bp-sidebar-collapse) {
+  .topbar .menu-btn {
+    display: grid;
+    place-items: center;
+  }
+}

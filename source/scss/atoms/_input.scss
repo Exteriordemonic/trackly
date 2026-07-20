@@ -1,0 +1,41 @@
+// ============================================================
+// Atom: Input
+// Shared styling for text inputs, textareas and selects.
+// BEM: .input, .textarea, .select, .err-text
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  background: $surface;
+  border: 1px solid $border-strong;
+  border-radius: $radius-sm;
+  padding: 11px 13px;
+  color: $text;
+  transition: border-color .12s, box-shadow .12s;
+
+  &::placeholder {
+    color: $text-faint;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $accent;
+    box-shadow: 0 0 0 3px $accent-softer;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: $line-height-base;
+}
+
+// Validation message shown under a field when it fails server-side validation.
+.err-text {
+  color: $status-rejected-fg;
+  font-size: 12.5px;
+  margin-top: 6px;
+}

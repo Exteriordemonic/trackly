@@ -1,0 +1,113 @@
+// ============================================================
+// Organism: Ticket table
+// Tickets list table, plus the empty state shown when no rows match.
+// BEM: .table-wrap, .table-scroll, table.tickets, .t-title/.t-id/.t-mail/.t-date, .empty-state
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.table-wrap {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $radius;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table.tickets {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+
+  th {
+    text-align: left;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    padding: 13px 18px;
+    background: $surface-2;
+    border-bottom: 1px solid $border;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 15px 18px;
+    border-bottom: 1px solid $border;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr {
+    transition: background .1s;
+    cursor: pointer;
+
+    &:hover {
+      background: $surface-2;
+    }
+  }
+}
+
+.t-title {
+  font-weight: 600;
+  color: $text;
+}
+
+.t-id {
+  font-size: 12px;
+  color: $text-faint;
+  font-family: $font-display;
+  margin-top: 2px;
+}
+
+.t-mail {
+  color: $text-muted;
+  font-size: 13.5px;
+}
+
+.t-date {
+  color: $text-muted;
+  font-size: 13.5px;
+  white-space: nowrap;
+}
+
+.empty-state {
+  display: none;
+  padding: 56px 24px;
+  text-align: center;
+
+  &.show {
+    display: block;
+  }
+
+  .es-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: $surface-2;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 16px;
+    color: $text-faint;
+  }
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 14px;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+}

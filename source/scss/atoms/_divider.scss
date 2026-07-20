@@ -1,0 +1,23 @@
+// ============================================================
+// Atom: Divider
+// Labelled horizontal rule ("lub" / "or") splitting two form actions.
+// BEM: .divider
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  color: $text-faint;
+  font-size: 12px;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: $border;
+  }
+}

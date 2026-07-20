@@ -1,17 +1,25 @@
 {% extends 'base.html' %} 
 {% block body %}
-{% include 'partials/brand.html' %}
-<div class="auth-card">
-    <h1 class="h1">
-        Zaloguj się
-    </h1>
-    <p class="text-base">
-        Wpisz dane, aby otworzyć panel projektów. 
-    </p>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>Zaloguj</button>
-    </form>
-<div>
+<main class="auth">
+    <div class="auth__inner">
+        {% include 'partials/brand.html' %}
+        <div class="auth__card">
+            <div class="auth__header">
+                <h1 class="auth__title h1">
+                    Zaloguj się
+                </h1>
+                <p class="auth__text text-base text-muted">
+                    Wpisz dane, aby otworzyć panel projektów. 
+                </p>
+            </div>
+            <form class="form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% include 'atoms/button.html' with text="Zaloguj" arrow=True %}
+            </form>
+            <div class="divider">lub</div>
+            {% include 'atoms/button.html' with text="Użyj magic linka" arrow=True link="/test" %}
+        <div>
+    <div>
+</main>
 {% endblock %}

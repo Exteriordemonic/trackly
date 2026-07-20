@@ -25,23 +25,4 @@
   gap: 9px;
   text-decoration: none;
   color: inherit;
-
-  &--centered {
-    justify-content: center;
-    width: 100%;
-  }
-
-  &--sm {
-    gap: 7px;
-
-    .brand__mark { @extend .brand-mark--sm; }
-    .brand__name { @extend .brand-name--sm; }
-  }
-
-  &--lg {
-    gap: 10px;
-
-    .brand__mark { @extend .brand-mark--lg; }
-    .brand__name { @extend .brand-name--lg; }
-  }
 }
