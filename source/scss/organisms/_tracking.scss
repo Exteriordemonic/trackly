@@ -1,0 +1,181 @@
+// ============================================================
+// Organism: Public tracking screen
+// Ticket header, progress timeline, description and the
+// "ready for review" callout shown on the public /t/{uuid}/ page.
+// BEM: .track-head, .track-id, .section-block, .desc-text,
+//      .timeline > .tl-step, .callout
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.track-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 6px;
+
+  h1 {
+    font-size: 21px;
+  }
+}
+
+.track-id {
+  font-size: 12.5px;
+  color: $text-faint;
+  font-family: $font-display;
+}
+
+.section-block {
+  margin-top: 24px;
+
+  .blk-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: $text-faint;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 9px;
+  }
+}
+
+.desc-text {
+  color: $text;
+  line-height: 1.6;
+}
+
+.timeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: 6px;
+}
+
+.tl-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  text-align: center;
+
+  .node {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    z-index: 2;
+    background: $surface;
+    border: 2px solid $border-strong;
+    color: $text-faint;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .tl-name {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $text-faint;
+    margin-top: 8px;
+  }
+
+  .tl-date {
+    font-size: 11.5px;
+    color: $text-faint;
+    margin-top: 2px;
+  }
+
+  .bar {
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: $border-strong;
+    z-index: 1;
+  }
+
+  &:last-child .bar {
+    display: none;
+  }
+
+  &.done {
+    .node {
+      background: $accent;
+      border-color: $accent;
+      color: $text-on-accent;
+    }
+
+    .bar {
+      background: $accent;
+    }
+
+    .tl-name {
+      color: $text;
+    }
+  }
+
+  &.current .node {
+    background: $surface;
+    border-color: $accent;
+    color: $accent;
+    box-shadow: 0 0 0 4px $accent-soft;
+  }
+
+  &.current .tl-name {
+    color: $accent;
+  }
+}
+
+.callout {
+  margin-top: 24px;
+  border: 1px solid $status-review-bg;
+  background: #fbfaff;
+  border-radius: $radius;
+  padding: 20px;
+
+  .co-head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 10px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      color: $status-review-fg;
+    }
+
+    h3 {
+      font-size: 15px;
+      color: $status-review-fg;
+    }
+  }
+
+  ol {
+    margin: 0 0 16px;
+    padding-left: 20px;
+    color: $text;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  .co-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .timeline {
+    font-size: 11px;
+  }
+
+  .tl-step .tl-name {
+    font-size: 11px;
+  }
+}

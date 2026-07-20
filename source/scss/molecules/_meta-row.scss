@@ -1,0 +1,30 @@
+// ============================================================
+// Molecule: Meta row
+// Key/value row used on the success screen (ticket number, status).
+// BEM: .meta-row, .meta-row .k, .meta-row .v
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  background: $surface-2;
+  margin-bottom: 12px;
+  text-align: left;
+
+  .k {
+    font-size: 13px;
+    color: $text-muted;
+  }
+
+  .v {
+    font-family: $font-display;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}

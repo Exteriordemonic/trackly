@@ -1,0 +1,784 @@
+{% extends 'base.html' %}
+{% load partials %}
+
+{% block title %}Style guide — Trackly{% endblock %}
+
+{% block extra_head %}
+<style>
+  /* This block styles the guide page itself only — none of these rules
+     are part of the Trackly design system (that all lives in source/scss). */
+  .sg-shell{display:grid;grid-template-columns:220px 1fr;gap:0;align-items:start;}
+  .sg-nav{position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 18px;border-right:1px solid #e7ebef;}
+  .sg-nav a{display:block;padding:5px 8px;border-radius:6px;font-size:13.5px;color:#64748b;}
+  .sg-nav a:hover{background:#f8fafc;color:#0f172a;}
+  .sg-nav .sg-nav-group{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin:16px 8px 4px;}
+  .sg-nav .sg-nav-group:first-child{margin-top:0;}
+  .sg-main{padding:32px 40px 120px;min-width:0;}
+  .sg-intro{max-width:640px;margin-bottom:8px;}
+  .sg-section{margin-top:56px;padding-top:8px;border-top:1px solid #e7ebef;}
+  .sg-section:first-of-type{border-top:none;margin-top:32px;}
+  .sg-block{margin-top:32px;}
+  .sg-block-head{margin-bottom:12px;}
+  .sg-block-head code{background:#f1f5f9;padding:1px 6px;border-radius:4px;font-size:12.5px;}
+  .sg-demo{background:#f8fafc;border:1px solid #e7ebef;border-radius:12px;padding:24px;}
+  .sg-demo.pad-0{padding:0;overflow:hidden;}
+  .sg-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .sg-col{display:flex;flex-direction:column;gap:12px;}
+  .sg-swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:16px;}
+  .sg-swatch .chip-box{height:48px;border-radius:8px;border:1px solid rgba(0,0,0,.06);margin-bottom:6px;}
+  .sg-swatch .name{font-size:12.5px;font-weight:600;color:#0f172a;}
+  .sg-swatch .hex{font-size:11.5px;color:#94a3b8;font-family:monospace;}
+  .sg-frame{border:1px solid #e7ebef;border-radius:12px;overflow:hidden;height:440px;}
+  .sg-frame .shell{height:100%;}
+  .sg-frame .sidebar,.sg-frame .topbar{position:static !important;top:auto;height:auto;}
+  .sg-frame .sidebar{height:100%;}
+  .sg-frame .content{max-width:none;}
+  details.sg-code{margin-top:14px;}
+  details.sg-code summary{cursor:pointer;font-size:12.5px;font-weight:600;color:#64748b;}
+  details.sg-code pre{margin-top:8px;background:#0f172a;color:#e2e8f0;padding:14px 16px;border-radius:8px;font-size:12px;overflow-x:auto;line-height:1.6;}
+  .sg-todo{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#c2410c;background:#fff7ed;padding:2px 8px;border-radius:999px;margin-left:8px;}
+  @media (max-width:860px){ .sg-shell{grid-template-columns:1fr;} .sg-nav{position:static;height:auto;border-right:none;border-bottom:1px solid #e7ebef;} }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="sg-shell">
+  <nav class="sg-nav">
+    <div class="sg-nav-group">Trackly</div>
+    <a href="#tokens">Tokens</a>
+    <div class="sg-nav-group">Atoms</div>
+    <a href="#a-heading">Heading</a>
+    <a href="#a-text">Text</a>
+    <a href="#a-button">Button</a>
+    <a href="#a-badge">Badge</a>
+    <a href="#a-brand-mark">Brand mark</a>
+    <a href="#a-label">Label</a>
+    <a href="#a-input">Input</a>
+    <a href="#a-hint">Hint</a>
+    <a href="#a-avatar">Avatar</a>
+    <a href="#a-chip">Chip</a>
+    <a href="#a-icon-btn">Icon button</a>
+    <a href="#a-eyebrow">Eyebrow</a>
+    <a href="#a-alert">Alert</a>
+    <a href="#a-divider">Divider</a>
+    <div class="sg-nav-group">Molecules</div>
+    <a href="#m-brand">Brand</a>
+    <a href="#m-field">Field</a>
+    <a href="#m-input-wrap">Input wrap</a>
+    <a href="#m-checkbox">Checkbox field</a>
+    <a href="#m-dropzone">Dropzone</a>
+    <a href="#m-meta-row">Meta row</a>
+    <a href="#m-link-chip">Link chip</a>
+    <a href="#m-nav-item">Nav item</a>
+    <a href="#m-user-chip">User chip</a>
+    <a href="#m-kv">Key/value</a>
+    <div class="sg-nav-group">Organisms</div>
+    <a href="#o-auth">Auth card</a>
+    <a href="#o-public">Public ticket form</a>
+    <a href="#o-success">Success screen</a>
+    <a href="#o-tracking">Tracking screen</a>
+    <a href="#o-shell">Dashboard shell</a>
+    <a href="#o-project-card">Project card</a>
+    <a href="#o-ticket-table">Ticket table</a>
+    <a href="#o-ticket-detail">Ticket detail</a>
+  </nav>
+
+  <main class="sg-main">
+    <div class="sg-intro">
+      <span class="eyebrow">Atomic design</span>
+      <h1 class="h1">Trackly style guide</h1>
+      <p class="text-base text-muted">
+        Every atom, molecule and organism currently implemented in <code>source/scss</code>, rendered with the
+        real compiled CSS. Use this page to check what's already built before styling something new, and copy
+        the markup straight out of the "Markup" panels below.
+      </p>
+    </div>
+
+    <!-- ============================================================
+         TOKENS
+         ============================================================ -->
+    <section class="sg-section" id="tokens">
+      <h2 class="h2">Tokens</h2>
+      <p class="text-sm text-muted">source/scss/abstracts/_variables.scss</p>
+
+      <div class="sg-block">
+        <div class="sg-block-head"><h3 class="h4">Color</h3></div>
+        <div class="sg-swatches">
+          <div class="sg-swatch"><div class="chip-box" style="background:#059669;"></div><div class="name">$accent</div><div class="hex">#059669</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#047857;"></div><div class="name">$accent-hover</div><div class="hex">#047857</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#ecfdf5;"></div><div class="name">$accent-soft</div><div class="hex">#ecfdf5</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#d1fae5;"></div><div class="name">$accent-softer</div><div class="hex">#d1fae5</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#f6f8f7;"></div><div class="name">$bg</div><div class="hex">#f6f8f7</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#ffffff;"></div><div class="name">$surface</div><div class="hex">#ffffff</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#f8fafc;"></div><div class="name">$surface-2</div><div class="hex">#f8fafc</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#0f172a;"></div><div class="name">$text</div><div class="hex">#0f172a</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#64748b;"></div><div class="name">$text-muted</div><div class="hex">#64748b</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#94a3b8;"></div><div class="name">$text-faint</div><div class="hex">#94a3b8</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#e7ebef;"></div><div class="name">$border</div><div class="hex">#e7ebef</div></div>
+          <div class="sg-swatch"><div class="chip-box" style="background:#d6dce2;"></div><div class="name">$border-strong</div><div class="hex">#d6dce2</div></div>
+        </div>
+      </div>
+
+      <div class="sg-block">
+        <div class="sg-block-head"><h3 class="h4">Status colors</h3><p class="text-sm text-muted">Keys used by <code>$status-colors</code> and the <code>.badge</code> atom.</p></div>
+        <div class="sg-row">
+          <span class="badge new"><span class="dot"></span>New</span>
+          <span class="badge progress"><span class="dot"></span>In progress</span>
+          <span class="badge review"><span class="dot"></span>Ready for review</span>
+          <span class="badge done"><span class="dot"></span>Done</span>
+          <span class="badge rejected"><span class="dot"></span>Rejected</span>
+        </div>
+      </div>
+
+      <div class="sg-block">
+        <div class="sg-block-head"><h3 class="h4">Radius &amp; shadow</h3></div>
+        <div class="sg-row">
+          <div style="width:96px;height:64px;background:#fff;border:1px solid #e7ebef;border-radius:12px;display:grid;place-items:center;font-size:12px;color:#64748b;">$radius</div>
+          <div style="width:96px;height:64px;background:#fff;border:1px solid #e7ebef;border-radius:8px;display:grid;place-items:center;font-size:12px;color:#64748b;">$radius-sm</div>
+          <div style="width:96px;height:64px;background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(15,23,42,.05);display:grid;place-items:center;font-size:12px;color:#64748b;">$shadow-sm</div>
+          <div style="width:96px;height:64px;background:#fff;border-radius:8px;box-shadow:0 4px 16px -4px rgba(15,23,42,.10),0 1px 3px rgba(15,23,42,.04);display:grid;place-items:center;font-size:12px;color:#64748b;">$shadow</div>
+          <div style="width:96px;height:64px;background:#fff;border-radius:8px;box-shadow:0 20px 48px -16px rgba(15,23,42,.20);display:grid;place-items:center;font-size:12px;color:#64748b;">$shadow-lg</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ATOMS
+         ============================================================ -->
+    <section class="sg-section" id="atoms">
+      <h2 class="h2">Atoms</h2>
+
+      <div class="sg-block" id="a-heading">
+        <div class="sg-block-head"><h3 class="h4">Heading — <code>.h1</code>–<code>.h6</code></h3></div>
+        <div class="sg-demo sg-col">
+          <div class="h1">Heading level 1</div>
+          <div class="h2">Heading level 2</div>
+          <div class="h3">Heading level 3</div>
+          <div class="h4">Heading level 4</div>
+          <div class="h5">Heading level 5</div>
+          <div class="h6">Heading level 6</div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-text">
+        <div class="sg-block-head"><h3 class="h4">Text — <code>.text-lg</code>/<code>.text-base</code>/<code>.text-sm</code>/<code>.text-xs</code>/<code>.text-2xs</code></h3></div>
+        <div class="sg-demo sg-col">
+          <p class="text-lg">Large paragraph text — text-lg</p>
+          <p class="text-base">Base paragraph text — text-base</p>
+          <p class="text-sm">Small paragraph text — text-sm</p>
+          <p class="text-xs">Extra small text — text-xs</p>
+          <p class="text-2xs">2x extra small text — text-2xs</p>
+          <p class="text-base text-muted">Muted variant — text-muted</p>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-button">
+        <div class="sg-block-head"><h3 class="h4">Button — <code>.btn</code></h3><p class="text-sm text-muted">Base <code>.btn</code> plus <code>.btn-primary</code> / <code>.btn-ghost</code> / <code>.btn-google</code> color modifiers and <code>.btn-block</code> / <code>.btn-lg</code> size modifiers.</p></div>
+        <div class="sg-demo sg-row">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn btn-primary btn-lg">
+            Primary · large
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <button class="btn btn-google">
+            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            Google
+          </button>
+        </div>
+        <div class="sg-demo" style="margin-top:12px;">
+          <button class="btn btn-primary btn-block">Block · full width</button>
+        </div>
+        <div class="sg-block-head" style="margin-top:16px;"><p class="text-sm text-muted">Reusable partial: <code>templates/atoms/button.html</code></p></div>
+        <div class="sg-demo">
+          {% include 'atoms/button.html' with text="Zaloguj" arrow=True %}
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-badge">
+        <div class="sg-block-head"><h3 class="h4">Badge — <code>.badge</code></h3></div>
+        <div class="sg-demo sg-row">
+          <span class="badge new"><span class="dot"></span>New</span>
+          <span class="badge progress"><span class="dot"></span>In progress</span>
+          <span class="badge review"><span class="dot"></span>Ready for review</span>
+          <span class="badge done"><span class="dot"></span>Done</span>
+          <span class="badge rejected"><span class="dot"></span>Rejected</span>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-brand-mark">
+        <div class="sg-block-head"><h3 class="h4">Brand mark — <code>.brand-mark</code> / <code>.brand-name</code></h3></div>
+        <div class="sg-demo sg-row">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </span>
+          <span class="brand-name">Trackly</span>
+          <span class="brand-name brand-name--sm">Trackly sm</span>
+          <span class="brand-name brand-name--lg">Trackly lg</span>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-label">
+        <div class="sg-block-head"><h3 class="h4">Label — <code>.label</code> / <code>.label-row</code></h3></div>
+        <div class="sg-demo sg-col">
+          <label class="label">Adres e-mail</label>
+          <label class="label">Screenshot <span class="opt">— opcjonalnie</span></label>
+          <div class="label-row" style="max-width:320px;">
+            <label class="label">Hasło</label>
+            <a href="#">Nie pamiętasz hasła?</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-input">
+        <div class="sg-block-head"><h3 class="h4">Input — <code>.input</code> / <code>.textarea</code> / <code>.err-text</code></h3></div>
+        <div class="sg-demo sg-col" style="max-width:360px;">
+          <input class="input" type="text" placeholder="jan@studio.dev" />
+          <textarea class="textarea" placeholder="Opisz problem…"></textarea>
+          <div>
+            <input class="input" type="text" value="zły e-mail" />
+            <div class="err-text">Podaj poprawny adres e-mail.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-hint">
+        <div class="sg-block-head"><h3 class="h4">Hint — <code>.hint</code></h3></div>
+        <div class="sg-demo">
+          <div class="hint">PNG, JPG do 5 MB</div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-avatar">
+        <div class="sg-block-head"><h3 class="h4">Avatar — <code>.avatar</code></h3></div>
+        <div class="sg-demo sg-row">
+          <span class="avatar">JK</span>
+          <span class="avatar" style="background:#6366f1;">B</span>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-chip">
+        <div class="sg-block-head"><h3 class="h4">Chip — <code>.chip</code></h3></div>
+        <div class="sg-demo sg-row">
+          <span class="chip active">Wszystkie <span class="c-count">54</span></span>
+          <span class="chip">New <span class="c-count">12</span></span>
+          <span class="chip">In progress <span class="c-count">8</span></span>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-icon-btn">
+        <div class="sg-block-head"><h3 class="h4">Icon button — <code>.icon-btn</code></h3></div>
+        <div class="sg-demo sg-row">
+          <button class="icon-btn" aria-label="Powiadomienia">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-eyebrow">
+        <div class="sg-block-head"><h3 class="h4">Eyebrow — <code>.eyebrow</code></h3></div>
+        <div class="sg-demo">
+          <div class="eyebrow">Sklep internetowy ModaPL</div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-alert">
+        <div class="sg-block-head"><h3 class="h4">Alert — <code>.alert</code></h3></div>
+        <div class="sg-demo">
+          <div class="alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Nieprawidłowy e-mail lub hasło.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="a-divider">
+        <div class="sg-block-head"><h3 class="h4">Divider — <code>.divider</code></h3></div>
+        <div class="sg-demo" style="max-width:320px;">
+          <div class="divider">lub</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MOLECULES
+         ============================================================ -->
+    <section class="sg-section" id="molecules">
+      <h2 class="h2">Molecules</h2>
+
+      <div class="sg-block" id="m-brand">
+        <div class="sg-block-head"><h3 class="h4">Brand — <code>.brand</code></h3><p class="text-sm text-muted">Partial: <code>templates/partials/brand.html</code></p></div>
+        <div class="sg-demo">
+          {% include 'partials/brand.html' %}
+        </div>
+      </div>
+
+      <div class="sg-block" id="m-field">
+        <div class="sg-block-head"><h3 class="h4">Field — <code>.field</code></h3></div>
+        <div class="sg-demo" style="max-width:360px;">
+          <div class="field">
+            <label class="label" for="sg-title">Tytuł problemu</label>
+            <input class="input" id="sg-title" type="text" placeholder="np. Koszyk gubi produkty po odświeżeniu" />
+          </div>
+          <div class="field">
+            <label class="label" for="sg-mail">Twój e-mail</label>
+            <input class="input" id="sg-mail" type="email" placeholder="jan.kowalski@email.com" />
+            <div class="hint">Wyślemy tu link do śledzenia.</div>
+          </div>
+        </div>
+        <details class="sg-code">
+          <summary>Markup</summary>
+<pre>&lt;div class="field"&gt;
+  &lt;label class="label" for="id"&gt;Tytuł problemu&lt;/label&gt;
+  &lt;input class="input" id="id" type="text" placeholder="…" /&gt;
+&lt;/div&gt;</pre>
+        </details>
+      </div>
+
+      <div class="sg-block" id="m-input-wrap">
+        <div class="sg-block-head"><h3 class="h4">Input wrap — <code>.input-wrap</code> / <code>.input-prefix</code></h3></div>
+        <div class="sg-demo sg-col" style="max-width:360px;">
+          <div class="input-wrap">
+            <span class="lead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
+            <input class="input" type="email" placeholder="jan@studio.dev" />
+          </div>
+          <div class="input-wrap">
+            <span class="lead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <input class="input has-toggle" type="password" placeholder="••••••••" />
+            <button type="button" class="toggle-pw" aria-label="Pokaż hasło">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="input-prefix">
+            <span class="px">🔗</span>
+            <input class="input" type="url" placeholder="https://modapl.pl/koszyk" />
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="m-checkbox">
+        <div class="sg-block-head"><h3 class="h4">Checkbox field — <code>.check</code></h3></div>
+        <div class="sg-demo">
+          <label class="check"><input type="checkbox" />Zapamiętaj mnie</label>
+        </div>
+      </div>
+
+      <div class="sg-block" id="m-dropzone">
+        <div class="sg-block-head"><h3 class="h4">Dropzone — <code>.dropzone</code></h3></div>
+        <div class="sg-demo" style="max-width:360px;">
+          <label class="dropzone">
+            <div class="dz-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <div><strong>Kliknij, aby dodać zdjęcie</strong> lub przeciągnij plik</div>
+            <div class="hint" style="margin-top:2px;">PNG, JPG do 5 MB</div>
+            <input type="file" accept="image/*" />
+          </label>
+          <div class="dz-file show">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>screenshot.png</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="m-meta-row">
+        <div class="sg-block-head"><h3 class="h4">Meta row / Copy row — <code>.meta-row</code> / <code>.copy-row</code></h3></div>
+        <div class="sg-demo sg-col" style="max-width:360px;">
+          <div class="meta-row">
+            <span class="k">Numer zgłoszenia</span>
+            <span class="v">TCK-2C81-A3F9</span>
+          </div>
+          <div class="copy-row">
+            <input class="input" value="https://trackly.app/t/2c81a3f9-7b44-4e1a" readonly />
+            <button class="btn btn-ghost">Kopiuj</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="m-link-chip">
+        <div class="sg-block-head"><h3 class="h4">Link chip — <code>.link-chip</code></h3></div>
+        <div class="sg-demo">
+          <a class="link-chip" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            https://modapl.pl/
+          </a>
+        </div>
+      </div>
+
+      <div class="sg-block" id="m-nav-item">
+        <div class="sg-block-head"><h3 class="h4">Nav item — <code>.nav-item</code></h3></div>
+        <div class="sg-demo sg-col" style="max-width:220px;background:#fff;">
+          <a class="nav-item active" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            Projekty <span class="count">4</span>
+          </a>
+          <a class="nav-item" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg>
+            Wszystkie tickety <span class="count">54</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sg-block" id="m-user-chip">
+        <div class="sg-block-head"><h3 class="h4">User chip — <code>.user-chip</code></h3></div>
+        <div class="sg-demo" style="max-width:220px;">
+          <div class="user-chip">
+            <span class="avatar">JK</span>
+            <span>
+              <div class="u-name">Jan Kowalski</div>
+              <div class="u-mail">jan@studio.dev</div>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="m-kv">
+        <div class="sg-block-head"><h3 class="h4">Key/value list — <code>.kv</code></h3></div>
+        <div class="sg-demo" style="max-width:420px;">
+          <div class="kv">
+            <div class="kv-row">
+              <span class="kv-k">Opis problemu</span>
+              <span class="kv-v">Logo w nagłówku wygląda na rozmyte na telefonach z ekranem Retina.</span>
+            </div>
+            <div class="kv-row">
+              <span class="kv-k">Link do problemu</span>
+              <span class="kv-v"><a href="#">https://modapl.pl/</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ORGANISMS
+         ============================================================ -->
+    <section class="sg-section" id="organisms">
+      <h2 class="h2">Organisms</h2>
+
+      <div class="sg-block" id="o-auth">
+        <div class="sg-block-head"><h3 class="h4">Auth card — <code>.auth</code></h3></div>
+        <div class="sg-demo pad-0">
+          <div class="auth" style="min-height:0;padding:40px 20px;">
+            <div class="auth__inner">
+              {% include 'partials/brand.html' %}
+              <div class="auth__card">
+                <div class="auth__header">
+                  <h1 class="auth__title h1">Zaloguj się</h1>
+                  <p class="auth__text text-base text-muted">Wpisz dane, aby otworzyć panel projektów.</p>
+                </div>
+
+                <div class="field">
+                  <div class="label-row">
+                    <label class="label">Hasło</label>
+                    <a href="#">Nie pamiętasz hasła?</a>
+                  </div>
+                  <div class="input-wrap">
+                    <span class="lead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+                    <input class="input has-toggle" type="password" placeholder="••••••••" />
+                    <button type="button" class="toggle-pw" aria-label="Pokaż hasło">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="row-between">
+                  <label class="check"><input type="checkbox" />Zapamiętaj mnie</label>
+                </div>
+
+                <button class="btn btn-primary btn-block btn-lg">Zaloguj się</button>
+                <div class="divider">lub</div>
+                <button class="btn btn-google btn-block">
+                  <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+                  Kontynuuj z Google
+                </button>
+                <p class="auth__foot">Nie masz konta? <a href="#">Zarejestruj się</a></p>
+              </div>
+              <p class="auth__legal">Logując się, akceptujesz <a href="#">Regulamin</a> i <a href="#">Politykę prywatności</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="o-public">
+        <div class="sg-block-head"><h3 class="h4">Public ticket form — <code>.public</code> / <code>.public-card</code></h3></div>
+        <div class="sg-demo pad-0">
+          <div class="public" style="min-height:0;padding:40px 20px;">
+            <div class="public-inner">
+              <div class="public-brand">{% include 'partials/brand.html' %}</div>
+              <div class="public-card">
+                <div style="margin-bottom:24px;">
+                  <div class="eyebrow" style="margin-bottom:8px;">Sklep internetowy ModaPL</div>
+                  <h1 style="font-size:22px;margin-bottom:6px;">Zgłoś problem do projektu</h1>
+                  <p class="text-base text-muted" style="margin:0;">Opisz, co nie działa — bez zakładania konta.</p>
+                </div>
+                <div class="field">
+                  <label class="label" for="sg-url">Link do miejsca problemu</label>
+                  <div class="input-prefix">
+                    <span class="px">🔗</span>
+                    <input class="input" id="sg-url" type="url" placeholder="https://modapl.pl/koszyk" />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label" for="sg-shot">Screenshot <span class="opt">— opcjonalnie</span></label>
+                  <label class="dropzone" for="sg-shot">
+                    <div class="dz-icon">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    </div>
+                    <div><strong>Kliknij, aby dodać zdjęcie</strong> lub przeciągnij plik</div>
+                    <input id="sg-shot" type="file" accept="image/*" />
+                  </label>
+                </div>
+                <button class="btn btn-primary btn-block btn-lg">Wyślij zgłoszenie</button>
+              </div>
+              <p class="public-foot">Po wysłaniu otrzymasz prywatny link do śledzenia statusu zgłoszenia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="o-success">
+        <div class="sg-block-head"><h3 class="h4">Success screen — <code>.success-icon</code> / <code>.success-card</code></h3></div>
+        <div class="sg-demo pad-0">
+          <div class="public" style="min-height:0;padding:40px 20px;">
+            <div class="public-inner" style="max-width:480px;">
+              <div class="public-card success-card">
+                <div class="success-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <h1>Zgłoszenie wysłane!</h1>
+                <p class="sub">Zespół projektu otrzymał Twoje zgłoszenie i wkrótce się nim zajmie.</p>
+                <div class="meta-row"><span class="k">Numer zgłoszenia</span><span class="v">TCK-2C81-A3F9</span></div>
+                <div class="meta-row"><span class="k">Status</span><span class="badge new"><span class="dot"></span>New</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="o-tracking">
+        <div class="sg-block-head"><h3 class="h4">Tracking screen — <code>.timeline</code> / <code>.callout</code></h3></div>
+        <div class="sg-demo pad-0">
+          <div class="public" style="min-height:0;padding:40px 20px;">
+            <div class="public-inner" style="max-width:600px;">
+              <div class="public-card">
+                <div class="track-head">
+                  <div>
+                    <div class="eyebrow" style="margin-bottom:8px;">Sklep internetowy ModaPL</div>
+                    <h1>Logo nieostre na urządzeniach mobilnych</h1>
+                    <div class="track-id" style="margin-top:6px;">TCK-7F12-B0D4</div>
+                  </div>
+                  <span class="badge review"><span class="dot"></span>Ready for review</span>
+                </div>
+
+                <div class="section-block">
+                  <div class="blk-label">Postęp</div>
+                  <div class="timeline">
+                    <div class="tl-step done"><div class="bar"></div><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><div class="tl-name">New</div><div class="tl-date">18 cze</div></div>
+                    <div class="tl-step done"><div class="bar"></div><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><div class="tl-name">In progress</div><div class="tl-date">19 cze</div></div>
+                    <div class="tl-step current"><div class="bar"></div><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/></svg></div><div class="tl-name">Ready for review</div><div class="tl-date">22 cze</div></div>
+                    <div class="tl-step"><div class="node"></div><div class="tl-name">Done</div><div class="tl-date">—</div></div>
+                  </div>
+                </div>
+
+                <div class="section-block">
+                  <div class="blk-label">Zgłoszona strona</div>
+                  <a class="link-chip" href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    https://modapl.pl/
+                  </a>
+                </div>
+
+                <div class="callout">
+                  <div class="co-head">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    <h3>Gotowe do sprawdzenia</h3>
+                  </div>
+                  <ol>
+                    <li>Otwórz <strong>modapl.pl</strong> na telefonie.</li>
+                    <li>Spójrz na logo w górnym nagłówku.</li>
+                  </ol>
+                  <div class="co-actions">
+                    <button class="btn btn-primary">Potwierdzam, że działa</button>
+                    <button class="btn btn-ghost">Nadal nie działa</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="o-shell">
+        <div class="sg-block-head"><h3 class="h4">Dashboard shell — <code>.shell</code> / <code>.sidebar</code> / <code>.topbar</code></h3><p class="text-sm text-muted">Real usage is full-viewport with sticky positioning; this frame pins position to fit the preview.</p></div>
+        <div class="sg-demo pad-0">
+          <div class="sg-frame">
+            <div class="shell">
+              <aside class="sidebar">
+                <div class="brand">
+                  <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+                  <span class="brand-name">Trackly</span>
+                </div>
+                <div class="nav-section">Główne</div>
+                <a class="nav-item active" href="#">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                  Projekty <span class="count">4</span>
+                </a>
+                <a class="nav-item" href="#">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg>
+                  Wszystkie tickety <span class="count">54</span>
+                </a>
+                <div class="sidebar-spacer"></div>
+                <div class="user-chip">
+                  <span class="avatar">JK</span>
+                  <span><div class="u-name">Jan Kowalski</div><div class="u-mail">jan@studio.dev</div></span>
+                </div>
+              </aside>
+              <div class="main">
+                <header class="topbar">
+                  <button class="menu-btn" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                  </button>
+                  <div class="crumbs"><span class="cur">Projekty</span></div>
+                  <div class="tb-right">
+                    <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+                    <button class="btn btn-primary">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                      Nowy projekt
+                    </button>
+                  </div>
+                </header>
+                <div class="content">
+                  <div class="page-head">
+                    <div>
+                      <h1>Projekty</h1>
+                      <p class="ph-sub">4 aktywne projekty · 14 otwartych ticketów</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="o-project-card">
+        <div class="sg-block-head"><h3 class="h4">Project card — <code>.card-grid</code> / <code>.proj-card</code></h3></div>
+        <div class="sg-demo">
+          <div class="card-grid">
+            <article class="proj-card">
+              <div class="pc-top">
+                <span class="proj-logo" style="background:#6366f1;">MP</span>
+                <div>
+                  <div class="pc-name">Sklep internetowy ModaPL</div>
+                  <div class="pc-meta">modapl.pl</div>
+                </div>
+              </div>
+              <div class="pc-stats">
+                <div class="pc-stat"><div class="num">28</div><div class="lbl">Tickety</div></div>
+                <div class="pc-stat"><div class="num open">7</div><div class="lbl">Otwarte</div></div>
+              </div>
+              <div class="pc-foot">
+                <span class="act">Aktywność: 15 min temu</span>
+                <span class="btn btn-ghost" style="padding:7px 12px;font-size:13px;">Otwórz projekt</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="o-ticket-table">
+        <div class="sg-block-head"><h3 class="h4">Ticket table — <code>.toolbar</code> / <code>.link-bar</code> / <code>table.tickets</code></h3></div>
+        <div class="sg-demo sg-col">
+          <div class="link-bar">
+            <span class="lb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+            <div class="lb-text">
+              <div class="lt-label">Publiczny link do zgłaszania problemów</div>
+              <div class="lt-url">https://trackly.app/p/2c81a3f9/new/</div>
+            </div>
+            <button class="btn btn-ghost">Kopiuj link</button>
+          </div>
+
+          <form class="toolbar">
+            <div class="filters">
+              <span class="chip active">Wszystkie</span>
+              <span class="chip">New</span>
+              <span class="chip">In progress</span>
+            </div>
+            <div class="search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input class="input" type="search" placeholder="Szukaj po tytule lub e-mailu…" />
+            </div>
+          </form>
+
+          <div class="table-wrap">
+            <div class="table-scroll">
+              <table class="tickets">
+                <thead>
+                  <tr><th>Status</th><th>Tytuł</th><th>Reporter</th><th>Utworzono</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge review"><span class="dot"></span>Ready for review</span></td>
+                    <td><div class="t-title">Logo nieostre na urządzeniach mobilnych</div><div class="t-id">TCK-7F12</div></td>
+                    <td class="t-mail">biuro@modapl.pl</td>
+                    <td class="t-date">18 cze 2026</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-block" id="o-ticket-detail">
+        <div class="sg-block-head"><h3 class="h4">Ticket detail — <code>.detail-grid</code> / <code>.panel</code> / <code>.status-grid</code></h3></div>
+        <div class="sg-demo">
+          <div class="detail-grid">
+            <div>
+              <div class="panel panel-pad">
+                <div class="detail-top">
+                  <span class="badge review"><span class="dot"></span>Ready for review</span>
+                  <span class="d-id">TCK-7F12-B0D4</span>
+                </div>
+                <h1 class="detail-title">Logo nieostre na urządzeniach mobilnych</h1>
+                <div class="kv" style="margin-top:18px;">
+                  <div class="kv-row">
+                    <span class="kv-k">Opis problemu</span>
+                    <span class="kv-v">Logo w nagłówku wygląda na rozmyte na telefonach z ekranem Retina.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-pad">
+                <div class="panel-title">Screenshot</div>
+                <div class="shot">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="shot-cap">logo-blur-mobile.png · 248 KB</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="panel panel-pad">
+                <div class="panel-title">Zgłaszający</div>
+                <div class="reporter">
+                  <span class="avatar" style="background:#6366f1;">B</span>
+                  <span><div class="r-mail">biuro@modapl.pl</div><div class="r-when">Zgłoszono 18 cze 2026</div></span>
+                </div>
+              </div>
+              <div class="panel panel-pad">
+                <div class="panel-title">Zmień status</div>
+                <div class="status-grid">
+                  <button class="status-opt">New</button>
+                  <button class="status-opt sel">Review</button>
+                  <button class="status-opt">Done</button>
+                </div>
+                <hr class="div" />
+                <button class="btn btn-primary btn-block">Zapisz i wyślij powiadomienie</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

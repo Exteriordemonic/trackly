@@ -1,9 +1,26 @@
 {% extends 'base.html' %} 
 {% block body %}
-{% include 'partials/brand.html' %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>Zaloguj</button>
-</form>
+<main class="auth">
+    <div class="auth__inner">
+        {% include 'partials/brand.html' %}
+        <div class="auth__card">
+            <div class="auth__header">
+                <h1 class="auth__title h1">
+                    Log in
+                </h1>
+                <p class="auth__text text-base text-muted">
+                    Enter your details to open the project panel.
+                </p>
+            </div>
+            <form class="form" method="post">
+                {% csrf_token %}
+                {{ form }}
+                {% include 'atoms/button.html' with text="Log in" arrow=True %}
+            </form>
+            <div class="divider">or</div>
+            {% include 'atoms/button.html' with text="Use magic link" arrow=True link="/test" variation="ghost" %}
+            <p class="auth__foot">Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+    </div>
+</main>
 {% endblock %}

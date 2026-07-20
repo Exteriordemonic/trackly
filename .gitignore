@@ -47,3 +47,6 @@ pg_service.conf
 
 # staticfiles
 static/
+
+# node_modules
+node_modules/

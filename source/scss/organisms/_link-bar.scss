@@ -1,0 +1,54 @@
+// ============================================================
+// Organism: Link bar
+// Banner showing the project's public submission link, with a copy button.
+// BEM: .link-bar, .lb-icon, .lb-text
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.link-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $radius;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+
+  .lb-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: $accent-soft;
+    display: grid;
+    place-items: center;
+    color: $accent;
+    flex: none;
+
+    svg {
+      width: 19px;
+      height: 19px;
+    }
+  }
+
+  .lb-text {
+    min-width: 0;
+    flex: 1;
+
+    .lt-label {
+      font-size: 12px;
+      color: $text-muted;
+      font-weight: 600;
+    }
+
+    .lt-url {
+      font-size: 13.5px;
+      color: $text;
+      font-family: $font-display;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

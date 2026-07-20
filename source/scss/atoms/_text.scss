@@ -1,0 +1,36 @@
+// ============================================================
+// Atom: Text
+// Standardizes text and paragraph sizing based only on paragraph size variables
+// BEM (block only): .text-lg, .text-base, .text-sm, .text-xs, .text-2xs
+// ============================================================
+@use "../abstracts/variables" as *;
+
+// Large paragraph/text variant
+.text-lg {
+  font-size: $text-size-lg;
+}
+
+// Base paragraph/text variant
+.text-base,
+p {
+  font-size: $text-size-base;
+}
+
+// Small paragraph/text variant
+.text-sm {
+  font-size: $text-size-sm;
+}
+
+// Extra-small paragraph/text variant
+.text-xs {
+  font-size: $text-size-xs;
+}
+
+// 2x Extra-small paragraph/text variant
+.text-2xs {
+  font-size: $text-size-2xs;
+}
+
+.text-muted {
+  color: $text-muted;
+}

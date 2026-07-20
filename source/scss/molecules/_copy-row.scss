@@ -1,0 +1,19 @@
+// ============================================================
+// Molecule: Copy row
+// Read-only input paired with a "Kopiuj" button (tracking link on the success screen).
+// BEM: .copy-row
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.copy-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+
+  .input {
+    flex: 1;
+    background: $surface-2;
+    font-size: 13.5px;
+    color: $text-muted;
+  }
+}

@@ -1,0 +1,28 @@
+// ============================================================
+// Molecule: Brand
+// Combines the brand-mark and brand-name atoms into a single clickable logo lockup.
+// Used in the sidebar, topbar, and on public screens.
+// BEM:
+//   .brand              blok (link/kontener)
+//   .brand__mark        instancja atomu brand-mark
+//   .brand__name         instancja atomu brand-name
+//   .brand--sm / --lg    modyfikatory rozmiaru (przekazywane w dół)
+//   .brand--centered     wariant wyśrodkowany (ekrany publiczne / auth)
+//
+// Markup:
+//   <a href="{% url 'project_list' %}" class="brand">
+//     <span class="brand__mark brand-mark">...</span>
+//     <span class="brand__name brand-name">Trackly</span>
+//   </a>
+// ============================================================
+@use "../abstracts/variables" as *;
+@use "../atoms/brand-mark";
+@use "../atoms/brand-name";
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: inherit;
+}

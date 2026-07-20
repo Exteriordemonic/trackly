@@ -1,0 +1,37 @@
+// ============================================================
+// Organism: Success screen
+// Confirmation card shown after a ticket is submitted.
+// BEM: .success-icon, .success-card
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: $accent-soft;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 20px;
+  border: 1px solid $accent-softer;
+
+  svg {
+    width: 30px;
+    height: 30px;
+    color: $accent;
+  }
+}
+
+.success-card {
+  text-align: center;
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .sub {
+    color: $text-muted;
+    margin-bottom: 24px;
+  }
+}

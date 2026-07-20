@@ -1,0 +1,36 @@
+// ============================================================
+// Atom: Chip
+// Filter pill used in ticket list toolbars ("Wszystkie", status filters).
+// BEM: .chip, .chip .c-count, modyfikator .chip.active
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.chip {
+  border: 1px solid $border;
+  background: $surface;
+  color: $text-muted;
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all .12s;
+
+  &:hover {
+    border-color: $border-strong;
+    color: $text;
+  }
+
+  &.active {
+    background: $text;
+    color: $text-on-accent;
+    border-color: $text;
+  }
+
+  .c-count {
+    font-size: 11.5px;
+    opacity: .7;
+  }
+}

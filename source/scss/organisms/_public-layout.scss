@@ -1,0 +1,51 @@
+// ============================================================
+// Organism: Public layout
+// Centered single-column shell used by all unauthenticated pages
+// (ticket form, success screen, public tracking screen).
+// BEM: .public, .public-inner, .public-brand, .public-card, .public-foot
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.public {
+  min-height: 100vh;
+  background: $bg;
+  padding: 40px 20px 64px;
+}
+
+.public-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.public-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.public-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  padding: 32px;
+}
+
+.public-foot {
+  text-align: center;
+  color: $text-faint;
+  font-size: 12.5px;
+  margin-top: 22px;
+}
+
+@media (max-width: $bp-mobile) {
+  .public {
+    padding: 24px 14px 48px;
+  }
+
+  .public-card {
+    padding: 22px;
+  }
+}

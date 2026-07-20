@@ -1,0 +1,18 @@
+// ============================================================
+// Molecule: Field
+// Vertical spacing wrapper around a label + input/textarea + hint.
+// Markup:
+//   <div class="field">
+//     <label class="label" for="...">...</label>
+//     <input class="input" ... />
+//     <div class="hint">...</div>
+//   </div>
+// ============================================================
+
+.field {
+  margin-bottom: 18px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

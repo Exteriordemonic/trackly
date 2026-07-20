@@ -1,0 +1,55 @@
+// ============================================================
+// Organism: Dashboard shell
+// Overall sidebar + main layout, and the content container/page
+// header used by every owner-facing page.
+// BEM: .shell, .main, .content, .page-head
+// ============================================================
+@use "../abstracts/variables" as *;
+
+.shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  padding: 28px 24px 48px;
+  max-width: $content-max-width;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+
+  h1 {
+    font-size: 23px;
+    margin-bottom: 4px;
+  }
+
+  .ph-sub {
+    color: $text-muted;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .content {
+    padding: 20px 16px 40px;
+  }
+
+  .page-head h1 {
+    font-size: 20px;
+  }
+}
