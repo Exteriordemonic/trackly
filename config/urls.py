@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+from core.views import tmp_home
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,4 +30,5 @@ urlpatterns = [
         TemplateView.as_view(template_name="style-guide.html"),
         name="style_guide",
     ),
+    path("", tmp_home, name="home"),
 ]
