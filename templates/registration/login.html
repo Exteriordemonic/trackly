@@ -14,7 +14,7 @@
             </div>
             <form class="form" method="post">
                 {% csrf_token %}
-                {{ form.as_div }}
+                {{ form }}
                 {% include 'atoms/button.html' with text="Zaloguj" arrow=True %}
             </form>
             <div class="divider">lub</div>
