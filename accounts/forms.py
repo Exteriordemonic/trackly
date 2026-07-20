@@ -5,6 +5,6 @@ from core.forms import StyledFormMixin
 
 
 class LoginForm(StyledFormMixin, AuthenticationForm):
-    username = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": "jan@studio.dev"})
+    username = forms.CharField(
+        max_length=100,
     )

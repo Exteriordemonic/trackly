@@ -6,20 +6,20 @@
         <div class="auth__card">
             <div class="auth__header">
                 <h1 class="auth__title h1">
-                    Zaloguj się
+                    Log in
                 </h1>
                 <p class="auth__text text-base text-muted">
-                    Wpisz dane, aby otworzyć panel projektów. 
+                    Enter your details to open the project panel.
                 </p>
             </div>
             <form class="form" method="post">
                 {% csrf_token %}
                 {{ form }}
-                {% include 'atoms/button.html' with text="Zaloguj" arrow=True %}
+                {% include 'atoms/button.html' with text="Log in" arrow=True %}
             </form>
-            <div class="divider">lub</div>
-            {% include 'atoms/button.html' with text="Użyj magic linka" arrow=True link="/test" variation="ghost" %}
-            <p class="auth__foot">Nie masz konta? <a href="#">Zarejestruj się</a></p>
+            <div class="divider">or</div>
+            {% include 'atoms/button.html' with text="Use magic link" arrow=True link="/test" variation="ghost" %}
+            <p class="auth__foot">Don't have an account? <a href="#">Sign up</a></p>
         </div>
     </div>
 </main>
