@@ -1,46 +1,32 @@
 // ============================================================
 // Atom: Text
-// Standardizes text (body, paragraph, muted, faint) typography
-// using the variables defined in _variables.scss
-// BEM (block only): .text, .text-muted, .text-faint, .text-lg, .text-sm
+// Standardizes text and paragraph sizing based only on paragraph size variables
+// BEM (block only): .text-lg, .text-base, .text-sm, .text-xs, .text-2xs
 // ============================================================
 @use "../abstracts/variables" as *;
 
-// Standard body text
-.text,
-p {
-  font-family: $font-body;
-  font-size: $p-base-size;
-  line-height: $p-base-line-height;
-  font-weight: 400;
-  color: $text;
-  margin-bottom: 1em;
-}
-
 // Large paragraph/text variant
 .text-lg {
-  font-family: $font-body;
-  font-size: $p-lg-size;
-  line-height: $p-lg-line-height;
-  font-weight: 400;
-  color: $text;
+  font-size: $text-size-lg;
+}
+
+// Base paragraph/text variant
+.text-base,
+p {
+  font-size: $text-size-base;
 }
 
 // Small paragraph/text variant
 .text-sm {
-  font-family: $font-body;
-  font-size: $p-sm-size;
-  line-height: $p-sm-line-height;
-  font-weight: 400;
-  color: $text;
+  font-size: $text-size-sm;
 }
 
-// Muted text (less emphasis)
-.text-muted {
-  color: $text-muted !important;
+// Extra-small paragraph/text variant
+.text-xs {
+  font-size: $text-size-xs;
 }
 
-// Faint / lowest-emphasis text
-.text-faint {
-  color: $text-faint !important;
+// 2x Extra-small paragraph/text variant
+.text-2xs {
+  font-size: $text-size-2xs;
 }
