@@ -2,6 +2,7 @@
 @use "./base/global";
 
 @use "./abstracts/variables" as *;
+@use "./atoms/heading";
 @use "./molecules/brand";
 
 body {

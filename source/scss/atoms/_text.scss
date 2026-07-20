@@ -1,0 +1,46 @@
+// ============================================================
+// Atom: Text
+// Standardizes text (body, paragraph, muted, faint) typography
+// using the variables defined in _variables.scss
+// BEM (block only): .text, .text-muted, .text-faint, .text-lg, .text-sm
+// ============================================================
+@use "../abstracts/variables" as *;
+
+// Standard body text
+.text,
+p {
+  font-family: $font-body;
+  font-size: $p-base-size;
+  line-height: $p-base-line-height;
+  font-weight: 400;
+  color: $text;
+  margin-bottom: 1em;
+}
+
+// Large paragraph/text variant
+.text-lg {
+  font-family: $font-body;
+  font-size: $p-lg-size;
+  line-height: $p-lg-line-height;
+  font-weight: 400;
+  color: $text;
+}
+
+// Small paragraph/text variant
+.text-sm {
+  font-family: $font-body;
+  font-size: $p-sm-size;
+  line-height: $p-sm-line-height;
+  font-weight: 400;
+  color: $text;
+}
+
+// Muted text (less emphasis)
+.text-muted {
+  color: $text-muted !important;
+}
+
+// Faint / lowest-emphasis text
+.text-faint {
+  color: $text-faint !important;
+}

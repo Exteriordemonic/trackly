@@ -1,9 +1,17 @@
 {% extends 'base.html' %} 
 {% block body %}
 {% include 'partials/brand.html' %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>Zaloguj</button>
-</form>
+<div class="auth-card">
+    <h1 class="title">
+        Zaloguj się
+    </h1>
+    <p class="text">
+        Wpisz dane, aby otworzyć panel projektów. 
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Zaloguj</button>
+    </form>
+<div>
 {% endblock %}
